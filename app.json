@@ -31,23 +31,5 @@
     "testSecret": ""
   },
   "sdkVersion": "50.0.0",
-  "platforms": ["ios", "android"],
-  "build": {
-    "preview": {
-      "android": {
-        "image": "latest"
-      },
-      "ios": {
-        "image": "latest"
-      }
-    },
-    "production": {
-      "android": {
-        "image": "latest"
-      },
-      "ios": {
-        "image": "latest"
-      }
-    }
-  }
+  "platforms": ["ios", "android"]
 }

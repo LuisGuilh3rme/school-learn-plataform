@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build-dev": "eas build --platform android --profile development",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "expo": "~50.0.14",
@@ -26,5 +27,10 @@
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   },
-  "private": true
+  "private": true,
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write",
+    "*.{ts,tsx}": "eslint"
+  }
 }

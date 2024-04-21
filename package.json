@@ -6,10 +6,13 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build-dev": "eas build --platform android --profile development"
   },
   "dependencies": {
     "expo": "~50.0.14",
+    "expo-constants": "~15.4.6",
+    "expo-dev-client": "~3.3.11",
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
     "react-native": "0.73.6"
@@ -17,7 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.45",
-    "typescript": "^5.1.3"
+    "typescript": "^5.4.5"
   },
   "private": true
 }

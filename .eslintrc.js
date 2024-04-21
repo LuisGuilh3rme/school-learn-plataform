@@ -5,4 +5,5 @@ module.exports = {
     // Ensures props and state inside functions are always up-to-date
     "react-hooks/exhaustive-deps": "warn",
   },
+  parser: "@typescript-eslint/parser",
 };

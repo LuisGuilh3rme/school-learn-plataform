@@ -1,7 +1,7 @@
 import { ExpoConfig, ConfigContext } from "expo/config";
 
-const firebaseApiId =
-  process.env.FIREBASE_API_ID ?? process.env.EXPO_PUBLIC_FIREBASE_API_ID;
+const firebaseAppId =
+  process.env.FIREBASE_API_ID ?? process.env.EXPO_PUBLIC_FIREBASE_APP_ID;
 const firebaseApiKey =
   process.env.FIREBASE_API_KEY ?? process.env.EXPO_PUBLIC_FIREBASE_API_KEY;
 const firebaseMessagingId =
@@ -13,7 +13,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: "school-learn-plataform",
   slug: "school-learn-plataform",
   extra: {
-    firebaseApiId,
+    firebaseAppId,
     firebaseApiKey,
     firebaseMessagingId,
     eas: {

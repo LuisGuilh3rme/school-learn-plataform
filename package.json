@@ -9,13 +9,16 @@
     "web": "expo start --web",
     "build-dev": "eas build --platform android --profile development",
     "lint": "eslint .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest"
   },
   "dependencies": {
     "expo": "~50.0.14",
     "expo-constants": "~15.4.6",
     "expo-dev-client": "~3.3.11",
     "expo-status-bar": "~1.11.1",
+    "jest": "^29.3.1",
+    "jest-expo": "~50.0.4",
     "react": "18.2.0",
     "react-native": "0.73.6"
   },
@@ -23,22 +26,33 @@
     "@babel/core": "^7.20.0",
     "@commitlint/cli": "^19.2.2",
     "@commitlint/config-conventional": "^19.2.2",
+    "@testing-library/react-native": "^12.4.5",
+    "@types/jest": "^29.5.12",
     "@types/react": "~18.2.45",
+    "@types/react-test-renderer": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
     "@typescript-eslint/parser": "^7.7.0",
     "eslint": "8",
     "eslint-config-universe": "^12.0.1",
+    "eslint-plugin-testing-library": "^6.2.2",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   },
-  "private": true,
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --fix",
     "*.{js,css,md}": [
       "eslint",
       "prettier --write"
     ]
-  }
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+    ],
+    "setupFilesAfterEnv": ["@testing-library/react-native/extend-expect"]
+  },
+  "private": true
 }

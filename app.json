@@ -28,8 +28,7 @@
   "extra": {
     "eas": {
       "projectId": "21fda8ed-7351-4728-bf98-25f50940e5eb"
-    },
-    "testSecret": ""
+    }
   },
   "sdkVersion": "50.0.0",
   "platforms": ["ios", "android"]

@@ -4,12 +4,10 @@ import React from "react";
 import App from "./App";
 
 describe("<App />", () => {
-  it("have the text rendering", () => {
+  it("show authentication page for default", () => {
     render(<App />);
 
-    const text = screen.getByText(
-      "Open up App.tsx to start working on your app!",
-    );
+    const text = screen.getByText("OLA, PRONTO PARA ESTUDAR HOJE?");
     expect(text).toBeTruthy();
   });
 });

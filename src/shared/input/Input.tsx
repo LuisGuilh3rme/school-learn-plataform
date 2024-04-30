@@ -18,9 +18,12 @@ export default function Input(props: InputProps) {
       <TextInput
         style={[styles.input, props.error && { borderColor: "red" }]}
         {...props}
+        testID="input"
       />
       {props.errorText && (
-        <Text style={styles.errorText}>{props.errorText}</Text>
+        <Text style={styles.errorText} testID="errorText">
+          {props.errorText}
+        </Text>
       )}
     </View>
   );

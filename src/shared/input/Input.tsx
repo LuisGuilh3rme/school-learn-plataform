@@ -1,16 +1,6 @@
-import { FieldError } from "react-hook-form";
-import {
-  View,
-  TextInput,
-  Text,
-  StyleSheet,
-  TextInputProps,
-} from "react-native";
+import { View, TextInput, Text, StyleSheet } from "react-native";
 
-type InputProps = {
-  error?: FieldError;
-  errorText?: string;
-} & TextInputProps;
+import { InputProps } from "../../types/Shared.types";
 
 export default function Input(props: InputProps) {
   return (
@@ -34,7 +24,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     padding: 2,
-    borderRadius: 5,
+    borderRadius: 10,
   },
   errorText: {
     color: "red",

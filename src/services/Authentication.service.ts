@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "../../firebase";
-import { firebaseSignSchema } from "../schemas/authentication/Authentication.schemas";
+import { firebaseSignSchema } from "../schemas/Authentication.schemas";
 import { SignProps } from "../types/Authentication.types";
 
 const signInAsync = async (data: SignProps): Promise<string | null> => {

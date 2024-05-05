@@ -16,6 +16,7 @@ import {
 } from "../../../services/Firestore.service";
 import ErrorModal from "../../../shared/components/errorModal/ErrorModal.component";
 import Input from "../../../shared/components/input/Input.component";
+import Loading from "../../../shared/components/loading/Loading.component";
 import {
   EMAIL_PATTERN,
   RA_PATTERN,
@@ -41,9 +42,24 @@ export default function SignUpScreen({
   });
   const [modalError, setModalError] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("");
+
+  const openLoading = (message: string) => {
+    setLoadingMessage(message);
+    setIsLoading(true);
+  };
+
+  const openModal = (message: string) => {
+    setIsLoading(false);
+    setModalError(message);
+    setModalOpen(true);
+  };
 
   const createAccountAsync = async (data: CreateAccountProps) => {
     try {
+      openLoading("Criando usuário");
+
       const username = data.username.trim();
 
       const queryRA = await getDocumentByIdentifierAsync({
@@ -52,16 +68,12 @@ export default function SignUpScreen({
       });
 
       if (!queryRA.exists()) {
-        setModalError(
-          "R.A escolar não cadastrado, verifique com sua instituição",
-        );
-        setModalOpen(true);
+        openModal("R.A escolar não cadastrado, verifique com sua instituição");
         return;
       }
 
       if (queryRA.get("authenticatorID")) {
-        setModalError("Usuário já cadastrado, tente realizar o login");
-        setModalOpen(true);
+        openModal("Usuário já cadastrado, tente realizar o login");
         return;
       }
 
@@ -72,8 +84,7 @@ export default function SignUpScreen({
       });
 
       if (!queryUsernameResponse.empty) {
-        setModalError("Nome de usuário já existente, tente outro nome");
-        setModalOpen(true);
+        openModal("Nome de usuário já existente, tente outro nome");
         return;
       }
 
@@ -91,30 +102,27 @@ export default function SignUpScreen({
       });
     } catch (error) {
       if (error instanceof ZodError) {
-        setModalError("Informações para criar conta inválidas");
+        openModal("Informações para criar conta inválidas");
       } else if (error instanceof FirebaseError) {
         switch (error.code) {
           case "auth/email-already-in-use":
-            setModalError(
-              "Email já cadastrado, tente novamente com outro email",
-            );
+            openModal("Email já cadastrado, tente novamente com outro email");
             break;
           default:
             await removeAccountAsync();
-            setModalError(
+            openModal(
               "Ocorreu um erro se conectar com o servidor para criar conta, tente novamente",
             );
         }
       } else {
-        setModalError("Ocorreu um erro ao criar conta, tente novamente");
+        openModal("Ocorreu um erro ao criar conta, tente novamente");
       }
-
-      setModalOpen(true);
     }
   };
 
   return (
     <View style={[styles.center, { flex: 1 }]}>
+      {isLoading && <Loading loadingContent={loadingMessage} />}
       <ErrorModal
         modalOpen={modalOpen}
         modalError={modalError}

@@ -6,6 +6,10 @@ type InputProps = {
   errorText?: string;
 } & TextInputProps;
 
+type LoadingProps = {
+  loadingContent: string;
+};
+
 type ErrorModalProps = {
   modalError: string;
   modalOpen: boolean;
@@ -13,4 +17,4 @@ type ErrorModalProps = {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 } & ModalProps;
 
-export { InputProps, ErrorModalProps };
+export { InputProps, LoadingProps, ErrorModalProps };

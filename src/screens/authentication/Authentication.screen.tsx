@@ -5,8 +5,8 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { ZodError } from "zod";
 
 import { signInAsync } from "../../services/Authentication.service";
-import ErrorModal from "../../shared/components/errorModal/ErrorModal";
-import Input from "../../shared/components/input/Input";
+import ErrorModal from "../../shared/components/errorModal/ErrorModal.component";
+import Input from "../../shared/components/input/Input.component";
 import { EMAIL_PATTERN } from "../../shared/helpers/Patterns";
 import { SignProps } from "../../types/Authentication.types";
 import { NavigationScreen } from "../../types/Navigator.types";

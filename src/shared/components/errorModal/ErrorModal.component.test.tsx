@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { render, screen } from "@testing-library/react-native";
 import React from "react";
 
-import ErrorModal from "./ErrorModal";
+import ErrorModal from "./ErrorModal.component";
 
 describe("ErrorModal", () => {
   function useState<T>(value: T): [T, jest.Mock<any, any, any>] {

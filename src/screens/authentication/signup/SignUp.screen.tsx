@@ -14,8 +14,8 @@ import {
   getDocumentsByProperty,
   updateDocumentAsync,
 } from "../../../services/Firestore.service";
-import ErrorModal from "../../../shared/components/errorModal/ErrorModal";
-import Input from "../../../shared/components/input/Input";
+import ErrorModal from "../../../shared/components/errorModal/ErrorModal.component";
+import Input from "../../../shared/components/input/Input.component";
 import {
   EMAIL_PATTERN,
   RA_PATTERN,

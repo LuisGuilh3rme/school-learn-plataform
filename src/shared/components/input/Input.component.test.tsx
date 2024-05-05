@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react-native";
 
-import Input from "./Input";
+import Input from "./Input.component";
 
 describe("Input", () => {
   it("should have normal content", () => {

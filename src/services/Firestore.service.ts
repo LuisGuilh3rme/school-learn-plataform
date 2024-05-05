@@ -1,15 +1,25 @@
 import {
   DocumentData,
   DocumentSnapshot,
+  QuerySnapshot,
+  collection,
   doc,
   getDoc,
-  setDoc,
+  getDocFromServer,
+  getDocsFromServer,
+  query,
+  updateDoc,
+  where,
 } from "firebase/firestore";
 
 import { db } from "../../firebase";
-import { DocumentProps, InsertDocumentProps } from "../types/Firestore.types";
+import {
+  DocumentProps,
+  GetDocumentsByPropertyProps,
+  UpdateDocumentProps,
+} from "../types/Firestore.types";
 
-const getDocumentAsync = async (
+const getDocumentByIdentifierAsync = async (
   data: DocumentProps,
 ): Promise<DocumentSnapshot<DocumentData, DocumentData>> => {
   const request = data;
@@ -20,11 +30,29 @@ const getDocumentAsync = async (
   return response;
 };
 
-const insertDocumentAsync = async (data: InsertDocumentProps) => {
+const getDocumentsByProperty = async <T>(
+  data: GetDocumentsByPropertyProps<T>,
+): Promise<QuerySnapshot<DocumentData, DocumentData>> => {
+  const request = data;
+
+  const queryRef = query(
+    collection(db, request.collection),
+    where(request.property, "==", request.value),
+  );
+  const response = await getDocsFromServer(queryRef);
+
+  return response;
+};
+
+const updateDocumentAsync = async (data: UpdateDocumentProps) => {
   const request = data;
 
   const docRef = doc(db, request.collection, request.identifier);
-  await setDoc(docRef, request.content, { merge: false });
+  await updateDoc(docRef, request.content);
 };
 
-export { getDocumentAsync, insertDocumentAsync };
+export {
+  getDocumentByIdentifierAsync,
+  getDocumentsByProperty,
+  updateDocumentAsync,
+};

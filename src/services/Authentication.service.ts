@@ -42,19 +42,22 @@ const signUpAsync = async (data: SignProps): Promise<string | null> => {
 };
 
 const setUsernameAsync = async (data: string): Promise<void> => {
-  const request = firebaseUsernameSchema.safeParse(data);
+  const request = firebaseUsernameSchema.safeParse({ username: data });
 
   if (request.success) {
     await updateProfile(auth.currentUser!, {
       displayName: request.data.username,
     });
+    return;
   }
 
   throw request.error;
 };
 
 const removeAccountAsync = async (): Promise<void> => {
-  await auth.currentUser?.delete;
+  if (auth.currentUser) {
+    await auth.currentUser?.delete();
+  }
 };
 
 export { signInAsync, signUpAsync, setUsernameAsync, removeAccountAsync };

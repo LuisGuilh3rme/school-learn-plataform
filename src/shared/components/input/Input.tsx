@@ -1,6 +1,6 @@
 import { View, TextInput, Text, StyleSheet } from "react-native";
 
-import { InputProps } from "../../types/Shared.types";
+import { InputProps } from "../../../types/Shared.types";
 
 export default function Input(props: InputProps) {
   return (

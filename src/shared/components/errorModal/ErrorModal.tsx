@@ -1,6 +1,6 @@
 import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
 
-import { ErrorModalProps } from "../../types/Shared.types";
+import { ErrorModalProps } from "../../../types/Shared.types";
 
 export default function ErrorModal(props: ErrorModalProps) {
   return (

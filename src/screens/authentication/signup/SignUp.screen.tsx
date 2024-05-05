@@ -1,6 +1,8 @@
+import { FirebaseError } from "firebase/app";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { View, StyleSheet, Pressable, Text } from "react-native";
+import { ZodError } from "zod";
 
 import {
   removeAccountAsync,
@@ -8,15 +10,23 @@ import {
   signUpAsync,
 } from "../../../services/Authentication.service";
 import {
-  getDocumentAsync,
-  insertDocumentAsync,
+  getDocumentByIdentifierAsync,
+  getDocumentsByProperty,
+  updateDocumentAsync,
 } from "../../../services/Firestore.service";
 import ErrorModal from "../../../shared/components/errorModal/ErrorModal";
 import Input from "../../../shared/components/input/Input";
-import { EMAIL_PATTERN } from "../../../shared/helpers/Patterns";
+import {
+  EMAIL_PATTERN,
+  RA_PATTERN,
+  USERNAME_PATTERN,
+} from "../../../shared/helpers/Patterns";
 import { CreateAccountProps } from "../../../types/Authentication.types";
+import { NavigationScreen } from "../../../types/Navigator.types";
 
-export default function SignUpScreen() {
+export default function SignUpScreen({
+  navigation,
+}: NavigationScreen<"SignUp">) {
   const {
     control,
     handleSubmit,
@@ -26,6 +36,7 @@ export default function SignUpScreen() {
       username: "",
       email: "",
       password: "",
+      ra: "",
     },
   });
   const [modalError, setModalError] = useState("");
@@ -33,28 +44,72 @@ export default function SignUpScreen() {
 
   const createAccountAsync = async (data: CreateAccountProps) => {
     try {
-      const queryUsernameResponse = await getDocumentAsync({
-        collection: "user",
-        identifier: data.username,
+      const username = data.username.trim();
+
+      const queryRA = await getDocumentByIdentifierAsync({
+        collection: "users",
+        identifier: data.ra,
       });
 
-      if (queryUsernameResponse.exists()) {
+      if (!queryRA.exists()) {
+        setModalError(
+          "R.A escolar não cadastrado, verifique com sua instituição",
+        );
+        setModalOpen(true);
+        return;
+      }
+
+      if (queryRA.get("authenticatorID")) {
+        setModalError("Usuário já cadastrado, tente realizar o login");
+        setModalOpen(true);
+        return;
+      }
+
+      const queryUsernameResponse = await getDocumentsByProperty<string>({
+        collection: "users",
+        property: "username",
+        value: username,
+      });
+
+      if (!queryUsernameResponse.empty) {
         setModalError("Nome de usuário já existente, tente outro nome");
         setModalOpen(true);
-      } else {
-        const userID = await signUpAsync(data);
-        await setUsernameAsync(data.username);
-
-        await insertDocumentAsync({
-          collection: "user",
-          identifier: data.username,
-          content: {
-            authenticatorID: userID!,
-          },
-        });
+        return;
       }
+
+      const userID = await signUpAsync(data);
+
+      await setUsernameAsync(username);
+
+      await updateDocumentAsync({
+        collection: "users",
+        identifier: data.ra,
+        content: {
+          username,
+          authenticatorID: userID!,
+        },
+      });
     } catch (error) {
-      removeAccountAsync();
+      if (error instanceof ZodError) {
+        setModalError("Informações para criar conta inválidas");
+      } else if (error instanceof FirebaseError) {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            setModalError(
+              "Email já cadastrado, tente novamente com outro email",
+            );
+            break;
+          default:
+            await removeAccountAsync();
+            setModalError(
+              "Ocorreu um erro se conectar com o servidor para criar conta, tente novamente",
+            );
+        }
+      } else {
+        setModalError("Ocorreu um erro ao criar conta, tente novamente");
+      }
+
+      setModalOpen(true);
     }
   };
 
@@ -66,7 +121,61 @@ export default function SignUpScreen() {
         setModalOpen={setModalOpen}
         setModalError={setModalError}
       />
-      <View>
+      <View
+        style={[
+          styles.center,
+          {
+            marginBottom: 10,
+          },
+        ]}
+      >
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "500",
+          }}
+        >
+          CRIAR CONTA
+        </Text>
+      </View>
+      <View
+        style={{
+          width: 250,
+          gap: 10,
+        }}
+      >
+        <Controller
+          control={control}
+          rules={{
+            required: {
+              value: true,
+              message: "Por favor, insira seu R.A",
+            },
+            minLength: {
+              value: 13,
+              message: "R.A deve possuir exatamente 13 digitos",
+            },
+            maxLength: {
+              value: 13,
+              message: "R.A deve possuir exatamente 13 digitos",
+            },
+            pattern: {
+              value: RA_PATTERN,
+              message: "R.A inválido",
+            },
+          }}
+          render={({ field: { onChange, value } }) => (
+            <Input
+              placeholder="R.A escolar"
+              onChangeText={onChange}
+              value={value}
+              maxLength={13}
+              error={errors.ra}
+              errorText={errors.ra?.message}
+            />
+          )}
+          name="ra"
+        />
         <Controller
           control={control}
           rules={{
@@ -82,6 +191,10 @@ export default function SignUpScreen() {
               value: 30,
               message: "O nome de usuário não pode ultrapassar 30 digitos",
             },
+            pattern: {
+              value: USERNAME_PATTERN,
+              message: "Nome de usuário inválido",
+            },
           }}
           render={({ field: { onChange, value } }) => (
             <Input
@@ -89,7 +202,6 @@ export default function SignUpScreen() {
               onChangeText={onChange}
               value={value}
               maxLength={30}
-              secureTextEntry
               error={errors.username}
               errorText={errors.username?.message}
             />
@@ -150,6 +262,11 @@ export default function SignUpScreen() {
           name="password"
         />
       </View>
+      <View style={styles.center}>
+        <Pressable onPress={() => navigation.navigate("Authentication")}>
+          <Text style={styles.link}>Já possuo uma conta</Text>
+        </Pressable>
+      </View>
       <Pressable
         style={({ pressed }) => [
           styles.border,
@@ -183,5 +300,10 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: "center",
     borderWidth: 0,
+  },
+  link: {
+    color: "#0066FF",
+    textDecorationLine: "underline",
+    fontSize: 12,
   },
 });

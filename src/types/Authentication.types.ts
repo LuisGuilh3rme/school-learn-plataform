@@ -4,6 +4,7 @@ type SignProps = {
 };
 
 type CreateAccountProps = {
+  ra: string;
   username: string;
 } & SignProps;
 

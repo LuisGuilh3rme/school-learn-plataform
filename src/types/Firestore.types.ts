@@ -4,13 +4,18 @@ type DocumentProps = {
 };
 
 type UserDocumentProps = {
+  username: string;
   authenticatorID: string;
 };
 
-type InsertDocumentProps = {
+type UpdateDocumentProps = {
+  content: UserDocumentProps;
+} & DocumentProps;
+
+type GetDocumentsByPropertyProps<T> = {
   collection: string;
-  identifier: string;
-  content: UserDocumentProps | null;
+  property: string;
+  value: T;
 };
 
-export { DocumentProps, InsertDocumentProps };
+export { DocumentProps, UpdateDocumentProps, GetDocumentsByPropertyProps };

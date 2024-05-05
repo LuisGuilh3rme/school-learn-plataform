@@ -37,8 +37,7 @@ export default function AuthenticationScreen({
     } catch (error) {
       if (error instanceof ZodError) {
         setModalError("Informações para login inválidas");
-      }
-      if (error instanceof FirebaseError) {
+      } else if (error instanceof FirebaseError) {
         switch (error.code) {
           case "auth/invalid-credential":
             setModalError("Credenciais inválidas");

@@ -14,9 +14,9 @@ const appId = Constants.expoConfig?.extra?.firebaseAppId;
 
 const firebaseConfig = {
   apiKey,
-  authDomain: "poc-school-learn-plataform.firebaseapp.com",
-  projectId: "poc-school-learn-plataform",
-  storageBucket: "poc-school-learn-plataform.appspot.com",
+  authDomain: "school-learn-plataform.firebaseapp.com",
+  projectId: "school-learn-plataform",
+  storageBucket: "school-learn-plataform.appspot.com",
   messagingSenderId,
   appId,
 };

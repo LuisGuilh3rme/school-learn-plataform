@@ -12,12 +12,15 @@ export default function ErrorModal(props: ErrorModalProps) {
         props.setModalOpen(false);
         props.setModalError("");
       }}
+      testID="modal"
       {...props}
     >
       <View style={styles.centeredView}>
         <View style={styles.modal}>
           <Text style={{ fontSize: 20 }}>Ocorreu um erro</Text>
-          <Text style={{ color: "red" }}>{props.modalError}</Text>
+          <Text style={{ color: "red" }} testID="modalText">
+            {props.modalError}
+          </Text>
           <Pressable
             onPress={() => {
               props.setModalOpen(false);

@@ -102,6 +102,8 @@ export default function SignUpScreen({
       });
 
       setIsLoading(false);
+
+      navigation.navigate("Home", { username });
     } catch (error) {
       if (error instanceof ZodError) {
         openModal("Informações para criar conta inválidas");

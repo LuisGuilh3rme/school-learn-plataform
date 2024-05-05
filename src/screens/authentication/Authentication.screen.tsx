@@ -48,7 +48,7 @@ export default function AuthenticationScreen({
       const username = await signInAsync(data);
 
       if (username) {
-        // redirecionar para proxima pagina
+        navigation.navigate("Home", { username });
       }
 
       setIsLoading(false);

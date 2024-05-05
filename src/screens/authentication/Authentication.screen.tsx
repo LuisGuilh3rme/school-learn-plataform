@@ -8,11 +8,14 @@ import { signInAsync } from "../../services/Authentication.service";
 import ErrorModal from "../../shared/errorModal/ErrorModal";
 import Input from "../../shared/input/Input";
 import { SignProps } from "../../types/Authentication.types";
+import { AuthenticationProps } from "../../types/Navigator.types";
 
 const EMAIL_PATTERN =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export default function AuthenticationScreen() {
+export default function AuthenticationScreen({
+  navigation,
+}: AuthenticationProps) {
   const {
     control,
     handleSubmit,
@@ -144,7 +147,9 @@ export default function AuthenticationScreen() {
       </View>
       <View style={styles.center}>
         <Text style={styles.link}>Esqueceu a senha? redefina aqui</Text>
-        <Text style={styles.link}>Criar conta</Text>
+        <Pressable onPress={() => navigation.navigate("SignUp")}>
+          <Text style={styles.link}>Criar conta</Text>
+        </Pressable>
       </View>
       <Pressable
         style={({ pressed }) => [

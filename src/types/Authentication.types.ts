@@ -1,6 +1,6 @@
-type LoginProps = {
+type SignProps = {
   email: string;
   password: string;
 };
 
-export { LoginProps };
+export { SignProps };

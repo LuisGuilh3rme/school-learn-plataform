@@ -1,11 +1,11 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "../../firebase";
-import { signInSchema } from "../schemas/authentication/Authentication.schemas";
-import { LoginProps } from "../types/Authentication.types";
+import { firebaseSignSchema } from "../schemas/authentication/Authentication.schemas";
+import { SignProps } from "../types/Authentication.types";
 
-const signInAsync = async (data: LoginProps): Promise<string | null> => {
-  const request = signInSchema.safeParse(data);
+const signInAsync = async (data: SignProps): Promise<string | null> => {
+  const request = firebaseSignSchema.safeParse(data);
 
   if (request.success) {
     const response = await signInWithEmailAndPassword(

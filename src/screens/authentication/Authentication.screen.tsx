@@ -7,7 +7,7 @@ import { ZodError } from "zod";
 import { signInAsync } from "../../services/Authentication.service";
 import ErrorModal from "../../shared/errorModal/ErrorModal";
 import Input from "../../shared/input/Input";
-import { LoginProps } from "../../types/Authentication.types";
+import { SignProps } from "../../types/Authentication.types";
 
 const EMAIL_PATTERN =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -26,7 +26,7 @@ export default function AuthenticationScreen() {
   const [modalError, setModalError] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
 
-  const userLoginAsync = async (data: LoginProps) => {
+  const userLoginAsync = async (data: SignProps) => {
     try {
       const username = await signInAsync(data);
 

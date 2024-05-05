@@ -100,6 +100,8 @@ export default function SignUpScreen({
           authenticatorID: userID!,
         },
       });
+
+      setIsLoading(false);
     } catch (error) {
       if (error instanceof ZodError) {
         openModal("Informações para criar conta inválidas");

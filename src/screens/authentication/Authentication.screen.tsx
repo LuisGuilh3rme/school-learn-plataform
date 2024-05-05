@@ -7,6 +7,7 @@ import { ZodError } from "zod";
 import { signInAsync } from "../../services/Authentication.service";
 import ErrorModal from "../../shared/components/errorModal/ErrorModal.component";
 import Input from "../../shared/components/input/Input.component";
+import Loading from "../../shared/components/loading/Loading.component";
 import { EMAIL_PATTERN } from "../../shared/helpers/Patterns";
 import { SignProps } from "../../types/Authentication.types";
 import { NavigationScreen } from "../../types/Navigator.types";
@@ -26,41 +27,56 @@ export default function AuthenticationScreen({
   });
   const [modalError, setModalError] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("");
+
+  const openLoading = (message: string) => {
+    setLoadingMessage(message);
+    setIsLoading(true);
+  };
+
+  const openModal = (message: string) => {
+    setIsLoading(false);
+    setModalError(message);
+    setModalOpen(true);
+  };
 
   const userLoginAsync = async (data: SignProps) => {
     try {
+      setIsLoading(true);
+
       const username = await signInAsync(data);
 
       if (username) {
         // redirecionar para proxima pagina
       }
+
+      setIsLoading(false);
     } catch (error) {
       if (error instanceof ZodError) {
-        setModalError("Informações para login inválidas");
+        openModal("Informações para login inválidas");
       } else if (error instanceof FirebaseError) {
         switch (error.code) {
           case "auth/invalid-credential":
-            setModalError("Credenciais inválidas");
+            openModal("Credenciais inválidas");
             break;
           case "auth/too-many-requests":
-            setModalError(
+            openModal(
               "Limite de tentativas excedido, tente novamente mais tarde",
             );
             break;
           default:
-            setModalError("Não foi possível se autenticar");
+            openModal("Não foi possível se autenticar");
         }
       } else {
-        setModalError(
-          "Não foi possível conectar com o serviço de autenticação",
-        );
+        openModal("Não foi possível conectar com o serviço de autenticação");
       }
-      setModalOpen(true);
     }
   };
 
   return (
     <View style={[styles.center, { flex: 1 }]}>
+      {isLoading && <Loading loadingContent={loadingMessage} />}
       <ErrorModal
         modalOpen={modalOpen}
         modalError={modalError}

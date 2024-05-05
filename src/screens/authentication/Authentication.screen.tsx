@@ -5,13 +5,11 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { ZodError } from "zod";
 
 import { signInAsync } from "../../services/Authentication.service";
-import ErrorModal from "../../shared/errorModal/ErrorModal";
+import ErrorModal from "../../shared/components/errorModal/ErrorModal";
+import { EMAIL_PATTERN } from "../../shared/helpers/Patterns";
 import Input from "../../shared/input/Input";
 import { SignProps } from "../../types/Authentication.types";
 import { AuthenticationProps } from "../../types/Navigator.types";
-
-const EMAIL_PATTERN =
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export default function AuthenticationScreen({
   navigation,

@@ -34,6 +34,7 @@
     "@babel/core": "^7.20.0",
     "@commitlint/cli": "^19.2.2",
     "@commitlint/config-conventional": "^19.2.2",
+    "@faker-js/faker": "^8.4.1",
     "@testing-library/react-native": "^12.4.5",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.2.45",

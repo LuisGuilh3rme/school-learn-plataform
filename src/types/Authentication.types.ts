@@ -3,4 +3,8 @@ type SignProps = {
   password: string;
 };
 
-export { SignProps };
+type CreateAccountProps = {
+  username: string;
+} & SignProps;
+
+export { SignProps, CreateAccountProps };

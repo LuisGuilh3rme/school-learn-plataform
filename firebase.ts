@@ -6,6 +6,7 @@ import {
   getAuth,
   getReactNativePersistence,
 } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const apiKey = Constants.expoConfig?.extra?.firebaseApiKey;
 const messagingSenderId = Constants.expoConfig?.extra?.firebaseMessagingId;
@@ -27,5 +28,6 @@ initializeAuth(app, {
 });
 
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-export { auth };
+export { auth, db };

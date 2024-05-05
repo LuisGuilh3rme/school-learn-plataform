@@ -5,4 +5,8 @@ const firebaseSignSchema = z.object({
   password: z.string().min(6).max(20),
 });
 
-export { firebaseSignSchema };
+const firebaseUsernameSchema = z.object({
+  username: z.string().min(6).max(30),
+});
+
+export { firebaseSignSchema, firebaseUsernameSchema };

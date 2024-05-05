@@ -43,7 +43,7 @@ export default function AuthenticationScreen({
 
   const userLoginAsync = async (data: SignProps) => {
     try {
-      setIsLoading(true);
+      openLoading("Realizando login");
 
       const username = await signInAsync(data);
 

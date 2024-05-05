@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     padding: 2,
-    borderRadius: 10,
+    borderRadius: 20,
   },
   errorText: {
     color: "red",

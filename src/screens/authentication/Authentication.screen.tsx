@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { ZodError } from "zod";
 
-import { signInAsync } from "../../services/authentication/Authentication.service";
+import { signInAsync } from "../../services/Authentication.service";
 import ErrorModal from "../../shared/errorModal/ErrorModal";
 import Input from "../../shared/input/Input";
 import { LoginProps } from "../../types/Authentication.types";

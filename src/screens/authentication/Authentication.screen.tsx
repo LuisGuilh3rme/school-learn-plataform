@@ -161,7 +161,6 @@ export default function AuthenticationScreen({
         />
       </View>
       <View style={styles.center}>
-        <Text style={styles.link}>Esqueceu a senha? redefina aqui</Text>
         <Pressable onPress={() => navigation.navigate("SignUp")}>
           <Text style={styles.link}>Criar conta</Text>
         </Pressable>

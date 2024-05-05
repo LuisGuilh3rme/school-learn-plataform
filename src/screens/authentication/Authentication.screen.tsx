@@ -9,11 +9,11 @@ import ErrorModal from "../../shared/components/errorModal/ErrorModal";
 import Input from "../../shared/components/input/Input";
 import { EMAIL_PATTERN } from "../../shared/helpers/Patterns";
 import { SignProps } from "../../types/Authentication.types";
-import { AuthenticationProps } from "../../types/Navigator.types";
+import { NavigationScreen } from "../../types/Navigator.types";
 
 export default function AuthenticationScreen({
   navigation,
-}: AuthenticationProps) {
+}: NavigationScreen<"Authentication">) {
   const {
     control,
     handleSubmit,
@@ -39,15 +39,17 @@ export default function AuthenticationScreen({
         setModalError("Informações para login inválidas");
       }
       if (error instanceof FirebaseError) {
-        if (error.code.includes("auth/invalid-credential")) {
-          setModalError("Credenciais inválidas");
-        }
-        if (error.code.includes("auth/too-many-requests")) {
-          setModalError(
-            "Limite de tentativas excedido, tente novamente mais tarde",
-          );
-        } else {
-          setModalError("Não foi possível se autenticar");
+        switch (error.code) {
+          case "auth/invalid-credential":
+            setModalError("Credenciais inválidas");
+            break;
+          case "auth/too-many-requests":
+            setModalError(
+              "Limite de tentativas excedido, tente novamente mais tarde",
+            );
+            break;
+          default:
+            setModalError("Não foi possível se autenticar");
         }
       } else {
         setModalError(

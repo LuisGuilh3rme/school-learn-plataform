@@ -7,6 +7,8 @@ type AppStackProps = {
   Home: {
     username?: string;
   };
+  Chat: undefined;
+  Share: undefined;
 };
 
 type NavigationScreen<T extends keyof AppStackProps> = {

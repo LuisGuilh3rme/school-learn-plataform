@@ -1,7 +1,7 @@
 import Feather from "@expo/vector-icons/Feather";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import SideBar from "../../shared/components/sidebar/sidebar.component";
+import BottomBar from "../../shared/components/bottombar/BottomBar.component";
 import { NavigationScreen } from "../../types/Navigator.types";
 
 export default function HomeScreen({ navigation }: NavigationScreen<"Home">) {
@@ -37,7 +37,7 @@ export default function HomeScreen({ navigation }: NavigationScreen<"Home">) {
           fugit facere earum quas ea.
         </Text>
       </View>
-      <SideBar navigation={navigation} />
+      <BottomBar navigation={navigation} />
     </View>
   );
 }

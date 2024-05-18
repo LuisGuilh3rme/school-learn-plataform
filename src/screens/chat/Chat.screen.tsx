@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 
-import SideBar from "../../shared/components/sidebar/sidebar.component";
+import BottomBar from "../../shared/components/bottombar/BottomBar.component";
 import { NavigationScreen } from "../../types/Navigator.types";
 
 export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
@@ -15,7 +15,7 @@ export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
           backgroundColor: "rgb(153, 255, 153)",
         }}
       />
-      <SideBar navigation={navigation} />
+      <BottomBar navigation={navigation} />
     </View>
   );
 }

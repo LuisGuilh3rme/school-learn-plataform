@@ -10,11 +10,11 @@ import { Pressable, StyleSheet, View } from "react-native";
 
 import { AppStackProps } from "../../../types/Navigator.types";
 
-type SidebarProps = {
+type BottomBarProps = {
   navigation: NativeStackNavigationProp<AppStackProps, keyof AppStackProps>;
 };
 
-export default function SideBar(props: SidebarProps) {
+export default function BottomBar(props: BottomBarProps) {
   const route = useRoute();
   const [currentRoute, setCurrentRoute] = useState<string>("");
 
@@ -27,16 +27,7 @@ export default function SideBar(props: SidebarProps) {
       <View style={{ alignItems: "center" }}>
         <View style={{ width: "99%", height: 1, backgroundColor: "grey" }} />
       </View>
-      <View
-        style={{
-          width: "100%",
-          height: "10%",
-          flex: 1,
-          justifyContent: "space-around",
-          flexDirection: "row",
-          marginTop: "2%",
-        }}
-      >
+      <View style={styles.bottonBarAlign}>
         <Pressable
           style={({ pressed }) => [
             {
@@ -95,9 +86,20 @@ export default function SideBar(props: SidebarProps) {
 }
 
 const styles = StyleSheet.create({
+  bottonBarAlign: {
+    width: "100%",
+    height: "10%",
+    flex: 1,
+    justifyContent: "space-around",
+    flexDirection: "row",
+    marginTop: "2%",
+  },
   wrapperCustom: {
     borderRadius: 30,
     marginBottom: 5,
     padding: 1,
+  },
+  iconPressed: {
+    backgroundColor: "",
   },
 });

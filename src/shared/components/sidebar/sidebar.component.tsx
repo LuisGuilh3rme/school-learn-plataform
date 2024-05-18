@@ -3,11 +3,10 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import Feather from "@expo/vector-icons/Feather";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState, useEffect } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 import { AppStackProps } from "../../../types/Navigator.types";
 
@@ -16,17 +15,12 @@ type SidebarProps = {
 };
 
 export default function SideBar(props: SidebarProps) {
-  const navigation = useNavigation();
   const route = useRoute();
   const [currentRoute, setCurrentRoute] = useState<string>("");
 
   useEffect(() => {
     setCurrentRoute(route.name);
   }, [route]);
-
-  const isCurrentRoute = (routeName: string) => {
-    return currentRoute === routeName;
-  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -69,7 +63,7 @@ export default function SideBar(props: SidebarProps) {
             styles.wrapperCustom,
           ]}
           onPress={() => {
-            props.navigation.navigate("Home", { username: "" });
+            props.navigation.navigate("Home");
           }}
         >
           <Ionicons

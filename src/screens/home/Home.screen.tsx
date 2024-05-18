@@ -4,10 +4,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import SideBar from "../../shared/components/sidebar/sidebar.component";
 import { NavigationScreen } from "../../types/Navigator.types";
 
-export default function HomeScreen({
-  navigation,
-  route,
-}: NavigationScreen<"Home">) {
+export default function HomeScreen({ navigation }: NavigationScreen<"Home">) {
   return (
     <View style={{ width: "100%", height: "100%" }}>
       <View

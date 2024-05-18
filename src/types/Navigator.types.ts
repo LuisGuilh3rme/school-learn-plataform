@@ -4,9 +4,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 type AppStackProps = {
   Authentication: undefined;
   SignUp: undefined;
-  Home: {
-    username?: string;
-  };
+  Home: undefined;
   Chat: undefined;
   Share: undefined;
 };

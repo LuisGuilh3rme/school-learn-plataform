@@ -25,10 +25,9 @@ export default function BottomBar(props: BottomBarProps) {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ alignItems: "center" }}>
-        <View style={{ width: "99%", height: 1, backgroundColor: "grey" }} />
-      </View>
-      <View style={styles.bottonBarAlign}>
+      <View style={styles.topBorder} />
+
+      <View style={styles.bottomBarAlign}>
         <BottomBarButton
           currentRoute={currentRoute}
           desiredRoute="Chat"
@@ -61,12 +60,14 @@ export default function BottomBar(props: BottomBarProps) {
 }
 
 const styles = StyleSheet.create({
-  bottonBarAlign: {
-    width: "100%",
-    height: "10%",
+  topBorder: {
+    height: 1,
+    backgroundColor: "grey",
+  },
+  bottomBarAlign: {
     flex: 1,
     justifyContent: "space-around",
     flexDirection: "row",
-    marginTop: "2%",
+    alignItems: "center",
   },
 });

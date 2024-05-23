@@ -165,6 +165,13 @@ export default function AuthenticationScreen({
           <Text style={styles.link}>Criar conta</Text>
         </Pressable>
       </View>
+
+      <View style={styles.center}>
+        <Pressable onPress={() => navigation.navigate("Recovery")}>
+          <Text style={styles.link}>Esqueceu sua senha?</Text>
+        </Pressable>
+      </View>
+
       <Pressable
         style={({ pressed }) => [
           styles.border,
@@ -186,6 +193,7 @@ const styles = StyleSheet.create({
   center: {
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 5,
   },
   border: {
     borderWidth: 1,

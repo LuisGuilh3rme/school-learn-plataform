@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 
 import AuthenticationScreen from "./src/screens/authentication/Authentication.screen";
+import RecoveryScreen from "./src/screens/authentication/password_recovery/Recovery.screen";
 import SignUpScreen from "./src/screens/authentication/signup/SignUp.screen";
 import ChatScreen from "./src/screens/chat/Chat.screen";
 import HomeScreen from "./src/screens/home/Home.screen";
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Chat" component={ChatScreen} />
         <Stack.Screen name="Share" component={ShareScreen} />
+        <Stack.Screen name="Recovery" component={RecoveryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

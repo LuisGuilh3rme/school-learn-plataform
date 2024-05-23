@@ -7,6 +7,7 @@ type AppStackProps = {
   Home: undefined;
   Chat: undefined;
   Share: undefined;
+  Recovery: undefined;
 };
 
 type NavigationScreen<T extends keyof AppStackProps> = {

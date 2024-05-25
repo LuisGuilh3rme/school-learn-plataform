@@ -7,6 +7,7 @@ import SignUpScreen from "./src/screens/authentication/signup/SignUp.screen";
 import ChatScreen from "./src/screens/chat/Chat.screen";
 import HomeScreen from "./src/screens/home/Home.screen";
 import ShareScreen from "./src/screens/share/Share.screen";
+import UserScreen from "./src/screens/user/User.screen";
 import { AppStackProps } from "./src/types/Navigator.types";
 
 const Stack = createNativeStackNavigator<AppStackProps>();
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Chat" component={ChatScreen} />
         <Stack.Screen name="Share" component={ShareScreen} />
+        <Stack.Screen name="User" component={UserScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

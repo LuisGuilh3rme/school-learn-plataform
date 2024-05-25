@@ -1,5 +1,12 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FieldError } from "react-hook-form";
 import { TextInputProps, ModalProps } from "react-native";
+
+import { AppStackProps } from "./Navigator.types";
+
+type NavigationProps = {
+  navigation: NativeStackNavigationProp<AppStackProps, keyof AppStackProps>;
+};
 
 type InputProps = {
   error?: FieldError;
@@ -17,4 +24,4 @@ type ErrorModalProps = {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 } & ModalProps;
 
-export { InputProps, LoadingProps, ErrorModalProps };
+export { NavigationProps, InputProps, LoadingProps, ErrorModalProps };

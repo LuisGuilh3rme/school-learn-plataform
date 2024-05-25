@@ -14,6 +14,9 @@ export default function UserIcon(props: NavigationProps) {
           },
           styles.onpress,
         ]}
+        onPress={() => {
+          props.navigation.navigate("User");
+        }}
       >
         <Feather name="user" size={30} color="black" />
       </Pressable>

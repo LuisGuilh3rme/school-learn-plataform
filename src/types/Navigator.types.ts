@@ -5,7 +5,6 @@ type AppStackProps = {
   Authentication: undefined;
   SignUp: undefined;
   Home: undefined;
-  Chat: undefined;
   Share: undefined;
   Recovery: undefined;
   User: undefined;

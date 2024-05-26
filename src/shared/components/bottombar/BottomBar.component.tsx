@@ -1,8 +1,4 @@
-import {
-  FontAwesome,
-  Ionicons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
@@ -24,15 +20,6 @@ export default function BottomBar(props: NavigationProps) {
       <View style={styles.topBorder} />
 
       <View style={styles.bottomBarAlign}>
-        <BottomBarButton
-          currentRoute={currentRoute}
-          desiredRoute="Chat"
-          defaultIcon="message"
-          onPressIcon="message-outline"
-          navigation={props.navigation}
-          vectorIcon={MaterialCommunityIcons}
-        />
-
         <BottomBarButton
           currentRoute={currentRoute}
           desiredRoute="Home"

@@ -62,26 +62,6 @@ export default function HomeScreen({ navigation }: NavigationScreen<"Home">) {
             },
           ]}
           onPress={() => {
-            navigation.navigate("Chat");
-          }}
-        >
-          <Ionicons name="chatbubbles-outline" size={80} color={iconColor} />
-          <Text style={[styles.buttonText, ThemedStyles(isDarkTheme).text]}>
-            Converse com outros alunos
-          </Text>
-        </Pressable>
-        <Pressable
-          style={({ pressed }) => [
-            styles.button,
-            {
-              backgroundColor: pressed
-                ? isDarkTheme
-                  ? "#555"
-                  : "#ddd"
-                : buttonBackgroundColor,
-            },
-          ]}
-          onPress={() => {
             navigation.navigate("Share");
           }}
         >

@@ -26,8 +26,9 @@ export default function UserIcon(props: NavigationProps) {
 
 const styles = StyleSheet.create({
   absoluteIcon: {
+    zIndex: 100,
     position: "absolute",
-    top: 100,
+    top: 50,
     right: 20,
   },
   onpress: {

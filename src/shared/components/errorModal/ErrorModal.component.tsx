@@ -1,3 +1,4 @@
+import React from "react";
 import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
 
 import { ErrorModalProps } from "../../../types/Shared.types";
@@ -17,24 +18,21 @@ export default function ErrorModal(props: ErrorModalProps) {
     >
       <View style={styles.centeredView}>
         <View style={styles.modal}>
-          <Text style={{ fontSize: 20 }}>Ocorreu um erro</Text>
-          <Text style={{ color: "red" }} testID="modalText">
-            {props.modalError}
-          </Text>
+          <Text style={styles.title}>Erro</Text>
+          <Text style={styles.errorText}>{props.modalError}</Text>
           <Pressable
             onPress={() => {
               props.setModalOpen(false);
               props.setModalError("");
             }}
             style={({ pressed }) => [
-              styles.border,
               styles.button,
               {
                 backgroundColor: pressed ? "#428EFF" : "#0066FF",
               },
             ]}
           >
-            <Text style={{ color: "white" }}>Ok</Text>
+            <Text style={styles.buttonText}>Ok</Text>
           </Pressable>
         </View>
       </View>
@@ -47,30 +45,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    marginTop: 50,
   },
   modal: {
-    alignContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "#F0F0F0",
     borderRadius: 20,
-    padding: 50,
+    padding: 20,
     alignItems: "center",
     elevation: 5,
-    gap: 20,
-    fontSize: 40,
-    flexWrap: "wrap",
-    width: 300,
   },
-  border: {
-    borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 20,
-    padding: 5,
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  errorText: {
+    color: "red",
+    marginBottom: 20,
   },
   button: {
-    width: 100,
-    padding: 10,
+    width: 120,
+    padding: 12,
     alignItems: "center",
-    borderWidth: 0,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: "white",
   },
 });

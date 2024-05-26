@@ -1,3 +1,4 @@
+import React from "react";
 import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
 
 import { SendModalProps } from "../../../types/Shared.types";
@@ -17,24 +18,21 @@ export default function SendModal(props: SendModalProps) {
     >
       <View style={styles.centeredView}>
         <View style={styles.modal}>
-          <Text style={{ fontSize: 20 }}>Email enviado com sucesso</Text>
-          <Text style={{ color: "red" }} testID="modalText">
-            {props.modalSend}
-          </Text>
+          <Text style={styles.title}>Email enviado com sucesso</Text>
+          <Text style={styles.successText}>{props.modalSend}</Text>
           <Pressable
             onPress={() => {
               props.setModalOpen(false);
               props.setModalSend("");
             }}
             style={({ pressed }) => [
-              styles.border,
               styles.button,
               {
                 backgroundColor: pressed ? "#428EFF" : "#0066FF",
               },
             ]}
           >
-            <Text style={{ color: "white" }}>Ok</Text>
+            <Text style={styles.buttonText}>Ok</Text>
           </Pressable>
         </View>
       </View>
@@ -47,30 +45,32 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    marginTop: 50,
   },
   modal: {
-    alignContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "#F0F0F0",
     borderRadius: 20,
-    padding: 50,
+    padding: 20,
     alignItems: "center",
     elevation: 5,
-    gap: 20,
-    fontSize: 40,
-    flexWrap: "wrap",
-    width: 300,
   },
-  border: {
-    borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 20,
-    padding: 5,
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  successText: {
+    color: "green",
+    marginBottom: 20,
+    textAlign: "center",
   },
   button: {
-    width: 100,
-    padding: 10,
+    width: 120,
+    padding: 12,
     alignItems: "center",
-    borderWidth: 0,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: "white",
   },
 });

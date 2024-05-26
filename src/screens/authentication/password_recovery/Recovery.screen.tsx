@@ -166,4 +166,18 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     fontSize: 12,
   },
+  container: {
+    alignItems: "center",
+  },
+  a: {
+    backgroundColor: "#0066FF",
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
+  },
 });

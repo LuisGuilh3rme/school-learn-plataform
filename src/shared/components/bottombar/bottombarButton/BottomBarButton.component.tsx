@@ -1,6 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useRef } from "react";
-import { Animated, Easing, Pressable } from "react-native";
+import React, { useRef } from "react";
+import { Animated, Pressable, StyleSheet } from "react-native";
 
 import { useAppSelector } from "../../../../../hooks";
 import { AppStackProps } from "../../../../types/Navigator.types";
@@ -45,12 +45,15 @@ export default function BottomBarButton(props: BottomBarButtonProps) {
       onPressIn={fadeIn}
       onPressOut={fadeOut}
       onPress={handlePress}
-      style={{
-        opacity: opacityValue,
-        borderRadius: 30,
-        marginBottom: 5,
-        padding: 5,
-      }}
+      style={[
+        styles.buttonContainer,
+        {
+          backgroundColor: isDarkTheme ? "#333" : "#fff",
+          opacity: opacityValue,
+          width: 55,
+          borderRadius: 30,
+        },
+      ]}
     >
       <props.vectorIcon
         name={
@@ -59,8 +62,18 @@ export default function BottomBarButton(props: BottomBarButtonProps) {
             : props.onPressIcon
         }
         size={28}
-        color={isDarkTheme ? "white" : "black"}
+        color={isDarkTheme ? "#fff" : "#000"}
       />
     </AnimatedPressable>
   );
 }
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    marginBottom: 10,
+    padding: 8,
+    elevation: 3,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

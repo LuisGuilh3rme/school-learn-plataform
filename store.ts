@@ -2,10 +2,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
 
+import AvatarReducer from "./src/shared/reducers/Avatar.reducer";
 import themeReducer from "./src/shared/reducers/Theme.reducer";
 
 const reducers = combineReducers({
   isDarkTheme: themeReducer,
+  avatar: AvatarReducer,
 });
 
 const persistConfig = {

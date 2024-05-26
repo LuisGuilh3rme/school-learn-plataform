@@ -7,6 +7,8 @@ import {
   getReactNativePersistence,
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 const apiKey = Constants.expoConfig?.extra?.firebaseApiKey;
 const messagingSenderId = Constants.expoConfig?.extra?.firebaseMessagingId;
@@ -29,5 +31,5 @@ initializeAuth(app, {
 
 const auth = getAuth(app);
 const db = getFirestore(app);
-
-export { auth, db };
+const storage = getStorage(app);
+export { auth, db, storage };

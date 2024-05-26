@@ -19,7 +19,9 @@ export default function ErrorModal(props: ErrorModalProps) {
       <View style={styles.centeredView}>
         <View style={styles.modal}>
           <Text style={styles.title}>Erro</Text>
-          <Text style={styles.errorText}>{props.modalError}</Text>
+          <Text style={styles.errorText} testID="modalText">
+            {props.modalError}
+          </Text>
           <Pressable
             onPress={() => {
               props.setModalOpen(false);

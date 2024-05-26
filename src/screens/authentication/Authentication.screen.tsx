@@ -185,15 +185,19 @@ export default function AuthenticationScreen({
           name="password"
         />
       </View>
-      <View style={styles.center}>
-        <Pressable onPress={() => navigation.navigate("SignUp")}>
-          <Text style={styles.link}>Criar conta</Text>
+      <View style={styles.container}>
+        <Pressable
+          style={styles.a}
+          onPress={() => navigation.navigate("SignUp")}
+        >
+          <Text style={styles.buttonText}>Criar conta</Text>
         </Pressable>
-      </View>
 
-      <View style={styles.center}>
-        <Pressable onPress={() => navigation.navigate("Recovery")}>
-          <Text style={styles.link}>Esqueceu sua senha?</Text>
+        <Pressable
+          style={styles.a}
+          onPress={() => navigation.navigate("Recovery")}
+        >
+          <Text style={styles.buttonText}>Esqueceu sua senha?</Text>
         </Pressable>
       </View>
 
@@ -236,5 +240,19 @@ const styles = StyleSheet.create({
     color: "#0066FF",
     textDecorationLine: "underline",
     fontSize: 12,
+  },
+  container: {
+    alignItems: "center",
+  },
+  a: {
+    backgroundColor: "#0066FF",
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
   },
 });

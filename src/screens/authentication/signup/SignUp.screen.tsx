@@ -274,9 +274,12 @@ export default function SignUpScreen({
           name="password"
         />
       </View>
-      <View style={styles.center}>
-        <Pressable onPress={() => navigation.navigate("Authentication")}>
-          <Text style={styles.link}>Já possuo uma conta</Text>
+      <View style={styles.container}>
+        <Pressable
+          style={styles.a}
+          onPress={() => navigation.navigate("Authentication")}
+        >
+          <Text style={styles.buttonText}>Já possuo uma conta</Text>
         </Pressable>
       </View>
       <Pressable
@@ -317,5 +320,19 @@ const styles = StyleSheet.create({
     color: "#0066FF",
     textDecorationLine: "underline",
     fontSize: 12,
+  },
+  container: {
+    alignItems: "center",
+  },
+  a: {
+    backgroundColor: "#0066FF",
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
   },
 });

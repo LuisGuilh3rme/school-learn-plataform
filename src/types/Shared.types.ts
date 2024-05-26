@@ -30,10 +30,18 @@ type ErrorModalProps = {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 } & ModalProps;
 
+type SendModalProps = {
+  modalSend: string;
+  modalOpen: boolean;
+  setModalSend: React.Dispatch<React.SetStateAction<string>>;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+} & ModalProps;
+
 export {
   ThemedViewProps,
   NavigationProps,
   InputProps,
   LoadingProps,
   ErrorModalProps,
+  SendModalProps,
 };

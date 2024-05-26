@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { auth } from "./firebase";
 import AuthenticationScreen from "./src/screens/authentication/Authentication.screen";
+import RecoveryScreen from "./src/screens/authentication/password_recovery/Recovery.screen";
 import SignUpScreen from "./src/screens/authentication/signup/SignUp.screen";
 import ChatScreen from "./src/screens/chat/Chat.screen";
 import HomeScreen from "./src/screens/home/Home.screen";
@@ -56,6 +57,7 @@ export default function App() {
                 component={AuthenticationScreen}
               />
               <Stack.Screen name="SignUp" component={SignUpScreen} />
+              <Stack.Screen name="Recovery" component={RecoveryScreen} />
             </Stack.Navigator>
           )}
           {user && (

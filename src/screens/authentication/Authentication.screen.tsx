@@ -4,13 +4,19 @@ import { Controller, useForm } from "react-hook-form";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { ZodError } from "zod";
 
+import { auth } from "../../../firebase";
+import { useAppDispatch } from "../../../hooks";
 import { signInAsync } from "../../services/Authentication.service";
+import { downloadImageAsync } from "../../services/Storage.service";
 import ErrorModal from "../../shared/components/errorModal/ErrorModal.component";
 import Input from "../../shared/components/input/Input.component";
 import Loading from "../../shared/components/loading/Loading.component";
 import { EMAIL_PATTERN } from "../../shared/helpers/Patterns";
+import { setAvatar } from "../../shared/reducers/Avatar.reducer";
 import { SignProps } from "../../types/Authentication.types";
 import { NavigationScreen } from "../../types/Navigator.types";
+
+const userIconsPath = "userIcons/";
 
 export default function AuthenticationScreen({
   navigation,
@@ -29,6 +35,7 @@ export default function AuthenticationScreen({
   const [modalOpen, setModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
+  const dispatch = useAppDispatch();
 
   const openLoading = (message: string) => {
     setLoadingMessage(message);
@@ -48,6 +55,7 @@ export default function AuthenticationScreen({
       const username = await signInAsync(data);
 
       if (username) {
+        downloadStorageAvatarAsync();
         navigation.navigate("Home");
       }
 
@@ -71,6 +79,23 @@ export default function AuthenticationScreen({
       } else {
         openModal("Não foi possível conectar com o serviço de autenticação");
       }
+    }
+  };
+
+  const downloadStorageAvatarAsync = async () => {
+    try {
+      const fileName = auth.currentUser?.displayName + "_avatar";
+
+      const avatar = await downloadImageAsync({
+        name: fileName,
+        path: userIconsPath,
+      });
+
+      if (avatar) {
+        dispatch(setAvatar(avatar));
+      }
+    } catch (error) {
+      dispatch(setAvatar(""));
     }
   };
 

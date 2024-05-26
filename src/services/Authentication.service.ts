@@ -2,6 +2,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  signOut,
 } from "firebase/auth";
 
 import { auth } from "../../firebase";
@@ -41,6 +42,10 @@ const signUpAsync = async (data: SignProps): Promise<string | null> => {
   throw request.error;
 };
 
+const signOutAsync = async (): Promise<void> => {
+  await signOut(auth);
+};
+
 const setUsernameAsync = async (data: string): Promise<void> => {
   const request = firebaseUsernameSchema.safeParse({ username: data });
 
@@ -60,4 +65,10 @@ const removeAccountAsync = async (): Promise<void> => {
   }
 };
 
-export { signInAsync, signUpAsync, setUsernameAsync, removeAccountAsync };
+export {
+  signInAsync,
+  signUpAsync,
+  signOutAsync,
+  setUsernameAsync,
+  removeAccountAsync,
+};

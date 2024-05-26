@@ -1,5 +1,5 @@
 import Feather from "@expo/vector-icons/Feather";
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   Pressable,

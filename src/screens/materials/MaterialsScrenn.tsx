@@ -1,27 +1,37 @@
 import * as DocumentPicker from "expo-document-picker";
-import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  orderBy,
+  limit,
+} from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   View,
   Text,
   Button,
   TextInput,
+  FlatList,
   StyleSheet,
   ToastAndroid,
 } from "react-native";
+import { string } from "zod";
 
 import { db, storage } from "../../../firebase";
 import BottomBar from "../../shared/components/bottombar/BottomBar.component";
 import { NavigationScreen } from "../../types/Navigator.types";
 
-export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
+export default function MaterialsScreen({
+  navigation,
+}: NavigationScreen<"Materials">) {
   const [file, setFile] = useState("");
-  //const [blobFile, setBlobFile] = useState(null);
   const [imgUrl, setImgUrl] = useState("");
   const [progresspercent, setProgresspercent] = useState(0);
   const [folder, setFolder] = useState("");
+
   const selectDoc = async () => {
     const document = await DocumentPicker.getDocumentAsync({});
     if (!document.canceled) {
@@ -62,6 +72,7 @@ export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
       folder,
     });
   }
+
   return (
     <View style={{ width: "100%", height: "100%" }}>
       <View
@@ -85,6 +96,7 @@ export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
               textAlign: "center",
               margin: "2%",
               fontSize: 17,
+              fontWeight: "700",
             }}
           >
             Materiais
@@ -103,7 +115,7 @@ export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
             Destino
           </Text>
           <TextInput
-            placeholder="Crie uma pasta"
+            placeholder="Crie uma pasta.Ex: Aula01"
             style={styles.input}
             onChangeText={(text) => setFolder(text)}
           />

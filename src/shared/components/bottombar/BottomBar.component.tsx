@@ -20,7 +20,7 @@ export default function BottomBar(props: NavigationProps) {
   }, [route]);
 
   return (
-    <View style={{ flex: 10 }}>
+    <View style={{ flex: 1 }}>
       <View style={styles.topBorder} />
 
       <View style={styles.bottomBarAlign}>

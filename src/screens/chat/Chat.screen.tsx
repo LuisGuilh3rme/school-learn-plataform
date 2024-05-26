@@ -1,16 +1,13 @@
 import * as React from "react";
-import { View } from "react-native";
+import { Text } from "react-native";
 
-import BottomBar from "../../shared/components/bottombar/BottomBar.component";
-import UserIcon from "../../shared/components/userIcon/UserIcon.component";
+import ThemedView from "../../shared/components/themedView/ThemedView.component";
 import { NavigationScreen } from "../../types/Navigator.types";
 
 export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
   return (
-    <View style={{ flex: 100 }}>
-      <UserIcon navigation={navigation} />
-      <View style={{ flex: 90 }} />
-      <BottomBar navigation={navigation} />
-    </View>
+    <ThemedView navigation={navigation}>
+      <Text>Chat Screen</Text>
+    </ThemedView>
   );
 }

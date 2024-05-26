@@ -3,7 +3,14 @@ import { addDoc, collection, onSnapshot } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import * as React from "react";
 import { useState } from "react";
-import { View, Text, Button, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  TextInput,
+  StyleSheet,
+  ToastAndroid,
+} from "react-native";
 
 import { db, storage } from "../../../firebase";
 import BottomBar from "../../shared/components/bottombar/BottomBar.component";
@@ -11,7 +18,7 @@ import { NavigationScreen } from "../../types/Navigator.types";
 
 export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
   const [file, setFile] = useState("");
-  const [blobFile, setBlobFile] = useState(null);
+  //const [blobFile, setBlobFile] = useState(null);
   const [imgUrl, setImgUrl] = useState("");
   const [progresspercent, setProgresspercent] = useState(0);
   const [folder, setFolder] = useState("");
@@ -41,6 +48,7 @@ export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             setImgUrl(downloadURL);
             await saveRec(downloadURL, new Date().toISOString(), folder);
+            ToastAndroid.show(`Salvo em:files/${folder}`, ToastAndroid.CENTER);
           });
         },
       );
@@ -101,7 +109,7 @@ export default function ChatScreen({ navigation }: NavigationScreen<"Chat">) {
           />
         </View>
         <View style={{ margin: "1%" }}>
-          <Button title="Selecionar" onPress={selectDoc} color="#2A93D5" />
+          <Button title="Upload" onPress={selectDoc} color="#2A93D5" />
         </View>
       </View>
       <BottomBar navigation={navigation} />

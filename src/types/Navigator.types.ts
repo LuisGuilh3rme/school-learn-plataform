@@ -8,6 +8,7 @@ type AppStackProps = {
   Chat: undefined;
   Share: undefined;
   Recovery: undefined;
+  User: undefined;
 };
 
 type NavigationScreen<T extends keyof AppStackProps> = {

@@ -4,18 +4,14 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 import BottomBarButton from "./bottombarButton/BottomBarButton.component";
 import { AppStackProps } from "../../../types/Navigator.types";
+import { NavigationProps } from "../../../types/Shared.types";
 
-type BottomBarProps = {
-  navigation: NativeStackNavigationProp<AppStackProps, keyof AppStackProps>;
-};
-
-export default function BottomBar(props: BottomBarProps) {
+export default function BottomBar(props: NavigationProps) {
   const route = useRoute();
   const [currentRoute, setCurrentRoute] = useState<keyof AppStackProps>("Home");
 

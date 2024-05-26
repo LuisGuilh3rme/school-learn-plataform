@@ -4,8 +4,8 @@ type DocumentProps = {
 };
 
 type UserDocumentProps = {
-  username: string;
-  authenticatorID: string;
+  username?: string;
+  authenticatorID?: string;
 };
 
 type UpdateDocumentProps = {

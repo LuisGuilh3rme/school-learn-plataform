@@ -22,7 +22,7 @@ export default function ThemedView(props: ThemedViewProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 10,
+    height: "100%",
   },
   content: {
     flex: 9,

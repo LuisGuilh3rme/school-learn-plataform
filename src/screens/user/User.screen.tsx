@@ -2,7 +2,15 @@ import Feather from "@expo/vector-icons/Feather";
 import * as ImagePicker from "expo-image-picker";
 import { getDownloadURL } from "firebase/storage";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, Switch, Pressable, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  Switch,
+  Pressable,
+  View,
+  Image,
+  Dimensions,
+} from "react-native";
 import { ZodError } from "zod";
 
 import { auth } from "../../../firebase";
@@ -167,7 +175,7 @@ export default function UserScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: "100%",
     marginVertical: 20,
     paddingHorizontal: 16,
     paddingVertical: 12,

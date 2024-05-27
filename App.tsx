@@ -11,8 +11,7 @@ import AuthenticationScreen from "./src/screens/authentication/Authentication.sc
 import RecoveryScreen from "./src/screens/authentication/password_recovery/Recovery.screen";
 import SignUpScreen from "./src/screens/authentication/signup/SignUp.screen";
 import HomeScreen from "./src/screens/home/Home.screen";
-import MaterialsScreen from "./src/screens/materials/MaterialsScrenn";
-import ShareScreen from "./src/screens/share/Share.screen";
+import MaterialsScreen from "./src/screens/materials/Materials.screen";
 import UserScreen from "./src/screens/user/User.screen";
 import Loading from "./src/shared/components/loading/Loading.component";
 import { AppStackProps } from "./src/types/Navigator.types";

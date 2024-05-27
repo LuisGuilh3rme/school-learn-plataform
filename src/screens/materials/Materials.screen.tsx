@@ -1,32 +1,21 @@
 import * as DocumentPicker from "expo-document-picker";
-import {
-  addDoc,
-  collection,
-  onSnapshot,
-  orderBy,
-  limit,
-} from "firebase/firestore";
+import { addDoc } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import * as React from "react";
-import { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Button,
-  TextInput,
-  FlatList,
-  StyleSheet,
-  ToastAndroid,
-} from "react-native";
+import { useState } from "react";
+import { View, Text, Button, TextInput, ToastAndroid } from "react-native";
 import { string } from "zod";
 
 import { db, storage } from "../../../firebase";
-import BottomBar from "../../shared/components/bottombar/BottomBar.component";
+import { useAppSelector } from "../../../hooks";
+import ThemedView from "../../shared/components/themedView/ThemedView.component";
+import { ThemedStyles } from "../../shared/styles/Themed.styles";
 import { NavigationScreen } from "../../types/Navigator.types";
 
 export default function MaterialsScreen({
   navigation,
 }: NavigationScreen<"Materials">) {
+  const isDarkTheme = useAppSelector((state) => state.isDarkTheme.value);
   const [file, setFile] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [progresspercent, setProgresspercent] = useState(0);
@@ -74,7 +63,7 @@ export default function MaterialsScreen({
   }
 
   return (
-    <View style={{ width: "100%", height: "100%" }}>
+    <ThemedView navigation={navigation}>
       <View
         style={{
           width: "100%",
@@ -104,18 +93,32 @@ export default function MaterialsScreen({
 
         <View style={{ margin: "1%" }}>
           <Text
-            style={{
-              color: "#050505",
-              textAlign: "left",
-              margin: "1%",
-              fontSize: 20,
-            }}
+            style={[
+              ThemedStyles(isDarkTheme).text,
+              {
+                textAlign: "left",
+                margin: "1%",
+                fontSize: 20,
+              },
+            ]}
           >
             Destino
           </Text>
           <TextInput
             placeholder="Crie uma pasta.Ex: Aula01"
-            style={styles.input}
+            placeholderTextColor={isDarkTheme ? "white" : "#050505"}
+            style={[
+              ThemedStyles(isDarkTheme).text,
+              {
+                borderColor: isDarkTheme ? "white" : "#050505",
+                margin: "1%",
+                borderWidth: 1,
+                borderRadius: 40,
+                paddingVertical: "1%",
+                paddingLeft: "3%",
+                fontSize: 20,
+              },
+            ]}
             onChangeText={(text) => setFolder(text)}
           />
         </View>
@@ -123,19 +126,6 @@ export default function MaterialsScreen({
           <Button title="Upload" onPress={selectDoc} color="#050505" />
         </View>
       </View>
-      <BottomBar navigation={navigation} />
-    </View>
+    </ThemedView>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    borderColor: "#050505",
-    margin: "1%",
-    borderWidth: 1,
-    borderRadius: 40,
-    paddingVertical: "1%",
-    paddingLeft: "3%",
-    fontSize: 20,
-  },
-});

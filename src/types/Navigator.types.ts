@@ -7,7 +7,6 @@ type AppStackProps = {
   Home: undefined;
 
   Materials: undefined;
-  Share: undefined;
   Recovery: undefined;
   User: undefined;
 };

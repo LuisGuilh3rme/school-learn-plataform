@@ -79,20 +79,19 @@ export default function MaterialsScreen({
         style={{
           width: "100%",
           height: "93%",
-          backgroundColor: "#ffffff",
           //padding: "1%",
         }}
       >
         <View
           style={{
             height: "10%",
-            backgroundColor: "#ADD9D8",
+            backgroundColor: "#050505",
             paddingTop: "6%",
           }}
         >
           <Text
             style={{
-              color: "rgb(18,84,136)",
+              color: "#ffffff",
               textAlign: "center",
               margin: "2%",
               fontSize: 17,
@@ -106,7 +105,7 @@ export default function MaterialsScreen({
         <View style={{ margin: "1%" }}>
           <Text
             style={{
-              color: "rgb(18,84,136)",
+              color: "#050505",
               textAlign: "left",
               margin: "1%",
               fontSize: 20,
@@ -121,7 +120,7 @@ export default function MaterialsScreen({
           />
         </View>
         <View style={{ margin: "1%" }}>
-          <Button title="Upload" onPress={selectDoc} color="#2A93D5" />
+          <Button title="Upload" onPress={selectDoc} color="#050505" />
         </View>
       </View>
       <BottomBar navigation={navigation} />
@@ -131,7 +130,7 @@ export default function MaterialsScreen({
 
 const styles = StyleSheet.create({
   input: {
-    borderColor: "#2A93D5",
+    borderColor: "#050505",
     margin: "1%",
     borderWidth: 1,
     borderRadius: 40,

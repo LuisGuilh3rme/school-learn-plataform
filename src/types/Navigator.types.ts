@@ -5,6 +5,8 @@ type AppStackProps = {
   Authentication: undefined;
   SignUp: undefined;
   Home: undefined;
+
+  Materials: undefined;
   Share: undefined;
   Recovery: undefined;
   User: undefined;

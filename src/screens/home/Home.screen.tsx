@@ -62,7 +62,7 @@ export default function HomeScreen({ navigation }: NavigationScreen<"Home">) {
             },
           ]}
           onPress={() => {
-            navigation.navigate("Share");
+            navigation.navigate("Materials");
           }}
         >
           <MaterialCommunityIcons

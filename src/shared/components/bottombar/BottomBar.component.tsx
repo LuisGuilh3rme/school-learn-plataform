@@ -31,7 +31,7 @@ export default function BottomBar(props: NavigationProps) {
 
         <BottomBarButton
           currentRoute={currentRoute}
-          desiredRoute="Share"
+          desiredRoute="Materials"
           defaultIcon="folder"
           onPressIcon="folder-o"
           navigation={props.navigation}
